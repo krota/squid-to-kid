@@ -29,12 +29,12 @@ function walk(node)
 
 function handleText(textNode) 
 {
-	var v = textNode.nodeValue;
+	var v = textNode.nodeValue.toLowerCase();
 
-	v = v.replace(/\bThe Cloud\b/g, "My Butt");
-	v = v.replace(/\bThe cloud\b/g, "My butt");
-	v = v.replace(/\bthe Cloud\b/g, "my Butt");
-	v = v.replace(/\bthe cloud\b/g, "my butt");
+	v = v.replace(/\ba squid now\b/g, "a kid now");
+	v = v.replace(/\ba kid now\b/g, "a squid now");
+	v = v.replace(/\bsquid\b/g, "kid");
+	v = v.replace(/\bkid\b/g, "squid");
 	
 	textNode.nodeValue = v;
 }
