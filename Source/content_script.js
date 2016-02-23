@@ -28,58 +28,58 @@ function walk(node)
 }
 
 function splitAndProcess(text) {
-    var words = text.nodeValue.split(' ');
-    for(var i = 0; i < words.length; i++) {
-        words[i] = squidKid(words[i]);
-    }
+	var words = text.nodeValue.split(' ');
+	for(var i = 0; i < words.length; i++) {
+		words[i] = squidKid(words[i]);
+	}
 
-    text.nodeValue = words.join(' ');
+	text.nodeValue = words.join(' ');
 }
 
 function squidKid(word) {
 
 	switch(true) {
-        case /\bsquid-to-kid\b/.test(word):
-            word = 'kid-to-squid';
-            break;
-        case /\bkid-to-squid\b/.test(word):
-            word = 'squid-to-kid';
-            break;
+		case /\bsquid-to-kid/.test(word):
+			word = word.replace(/\bsquid-to-kid/, 'kid-to-squid');
+			break;
+		case /\bkid-to-squid/.test(word):
+			word = word.replace(/\bkid-to-squid/, 'squid-to-kid');
+			break;
 		case /\bsquid\b/.test(word):
-			word = 'kid';
+			word = word.replace(/\bsquid\b/, 'kid');
 			break;
 		case /\bSquid\b/.test(word):
-			word = 'Kid';
+			word = word.replace(/\bSquid\b/, 'Kid');
 			break;
 		case /\bSQUID\b/.test(word):
-			word = 'KID';
+			word = word.replace(/\bSQUID\b/, 'KID');
 			break;
 		case /\bsquids\b/.test(word):
-			word = 'kids';
+			word = word.replace(/\bsquids\b/, 'kids');
 			break;
 		case /\bSquids\b/.test(word):
-			word = 'Kids';
+			word = word.replace(/\bSquids\b/, 'Kids');
 			break;
 		case /\bSQUIDS\b/.test(word):
-			word = 'KIDS';
+			word = word.replace(/\bSQUIDS\b/, 'KIDS');
 			break;
 		case /\bkid\b/.test(word):
-			word = 'squid';
+			word = word.replace(/\bkid\b/, 'squid');
 			break;
 		case /\bKid\b/.test(word):
-			word = 'Squid';
+			word = word.replace(/\bKid\b/, 'Squid');
 			break;
 		case /\bKID\b/.test(word):
-			word = 'SQUID';
+			word = word.replace(/\bKID\b/, 'SQUID');
 			break;
 		case /\bkids\b/.test(word):
-			word = 'squids';
+			word = word.replace(/\bkids\b/, 'squids');
 			break;
 		case /\bKids\b/.test(word):
-			word = 'Squids';
+			word = word.replace(/\bKids\b/, 'Squids');
 			break;
 		case /\bKIDS\b/.test(word):
-			word = 'SQUIDS';
+			word = word.replace(/\bKIDS\b/, 'SQUIDS');
 			break;
 	}
 
