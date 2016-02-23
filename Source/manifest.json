@@ -3,6 +3,10 @@
 	"name": "Squid to Kid",
 	"version": "1.0",
 	"description": "Replaces the text 'squid' with 'kid' and vise versa.",
+	"icons": {
+		"16"  : "icon16.png",
+		"128" : "icon128.png"
+	},
 	"content_scripts": 
 	[
 		{

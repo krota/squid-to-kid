@@ -1,53 +1,87 @@
-var body = document.body.innerHTML;
+walk(document.body);
 
-words = body.split(' ');
+function walk(node)
+{
+	// I stole this function from here:
+	// http://is.gd/mwZp7E
 
-for(var i = 0; i < words.length; i++) {
-	words[i] = squidKid(words[i]);
+	var child, next;
+
+	switch ( node.nodeType )
+	{
+		case 1:  // Element
+		case 9:  // Document
+		case 11: // Document fragment
+			child = node.firstChild;
+			while ( child )
+			{
+				next = child.nextSibling;
+				walk(child);
+				child = next;
+			}
+			break;
+
+		case 3: // Text node
+			splitAndProcess(node);
+			break;
+	}
+}
+
+function splitAndProcess(text) {
+    var words = text.nodeValue.split(' ');
+    for(var i = 0; i < words.length; i++) {
+        words[i] = squidKid(words[i]);
+    }
+
+    text.nodeValue = words.join(' ');
 }
 
 function squidKid(word) {
 
 	switch(true) {
+        case /\bsquid-to-kid\b/.test(word):
+            word = 'kid-to-squid';
+            break;
+        case /\bkid-to-squid\b/.test(word):
+            word = 'squid-to-kid';
+            break;
 		case /\bsquid\b/.test(word):
-			word = "kid";
+			word = 'kid';
 			break;
 		case /\bSquid\b/.test(word):
-			word = "Kid";
+			word = 'Kid';
 			break;
 		case /\bSQUID\b/.test(word):
-			word = "KID";
+			word = 'KID';
 			break;
 		case /\bsquids\b/.test(word):
-			word = "kids";
+			word = 'kids';
 			break;
 		case /\bSquids\b/.test(word):
-			word = "Kids";
+			word = 'Kids';
 			break;
 		case /\bSQUIDS\b/.test(word):
-			word = "KIDS";
+			word = 'KIDS';
 			break;
 		case /\bkid\b/.test(word):
-			word = "squid";
+			word = 'squid';
 			break;
 		case /\bKid\b/.test(word):
-			word = "Squid";
+			word = 'Squid';
 			break;
 		case /\bKID\b/.test(word):
-			word = "SQUID";
+			word = 'SQUID';
 			break;
 		case /\bkids\b/.test(word):
-			word = "squids";
+			word = 'squids';
 			break;
 		case /\bKids\b/.test(word):
-			word = "Squids";
+			word = 'Squids';
 			break;
 		case /\bKIDS\b/.test(word):
-			word = "SQUIDS";
+			word = 'SQUIDS';
 			break;
 	}
 
 	return word;
 }
-
-document.body.innerHTML = words.join(' ');
